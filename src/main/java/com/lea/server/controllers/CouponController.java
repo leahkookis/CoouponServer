@@ -47,25 +47,25 @@ public class CouponController {
         return couponLogic.getCoupon(couponId);
     }
 
-    @GetMapping({"/byCompany"})
+    @GetMapping("/byCompany")
     public List<CouponDto> getCouponsByCompanyID(@RequestParam("companyId") long companyId, @RequestParam("page") int page) throws ServerException {
         return couponLogic.getCouponsByCompanyID(companyId, page);
     }
 
-    @GetMapping({"/byCategory"})
-    public List<CouponDto> getCouponsByCategoryID(@RequestParam("categoryId") long categoryId, @RequestParam("page") int page) throws ServerException {
-        return couponLogic.getCouponsByCategoryID(categoryId, page);
+    @GetMapping("/bycategory")
+    public List<CouponDto> getCouponsByCategoryID(@RequestParam("categoryid") long categoryId) throws ServerException {
+        return couponLogic.getCouponsByCategoryID(categoryId, 1);
     }
 
 
-    @GetMapping({"/byPrice"})
+    @GetMapping("/byPrice")
     public List<CouponDto> getAllCouponsOrderByPrice() throws ServerException {
         return couponLogic.getAllCouponsOrderByPrice();
     }
 
 
 
-    @GetMapping({"/minPrice"})
+    @GetMapping("/minPrice")
     public CouponDto getMinPriceCouponsByCategoryID(@RequestParam("categoryId") long categoryId) throws ServerException {
         return couponLogic.getMinPriceCouponsByCategoryID(categoryId);
     }
