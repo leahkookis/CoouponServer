@@ -29,6 +29,11 @@ public class PurchaseController {
     purchaseLogic.updatePurchase(purchase);
   }
 
+  @PostMapping("/buycoupons")
+  public void updateCouponsToBuy(@RequestBody Integer[] purchaseIds) throws ServerException {
+    purchaseLogic.updateCouponsToBuy(purchaseIds);
+  }
+
   @DeleteMapping("/{purchaseId}")
   public void removePurchase(@PathVariable("purchaseId") long purchaseId) throws ServerException {
     purchaseLogic.removePurchase(purchaseId);
@@ -39,7 +44,7 @@ public class PurchaseController {
     return purchaseLogic.getPurchase(purchaseId);
   }
 
-  @GetMapping({"/bycustomer"})
+  @GetMapping("/bycustomer")
   public List<PurchaseDto> getPurchasesByUserID(@RequestParam("customerid") long customerId) throws ServerException {
     return purchaseLogic.getPurchasesByCustomerID(customerId, 1);
   }

@@ -34,6 +34,8 @@ public interface IPurchaseDal extends CrudRepository<Purchase, Long> {
             "JOIN Customer cus ON pur.customer.id = cus.id WHERE pur.coupon.company.id = :companyId")
     List<PurchaseDto> getPurchasesByCompanyID(@Param("companyId") long companyId, Pageable pageable);
 
+    @Query("UPDATE Purchase pur set isBuy = true where pur.id in(purchaseIds)")
+    void updateCouponsToBuy(Integer[] purchaseIds);
 
 }
 
