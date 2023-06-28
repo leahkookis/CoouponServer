@@ -3,6 +3,7 @@ package com.lea.server.controllers;
 import com.lea.server.beans.CouponDto;
 import com.lea.server.entity.Coupon;
 import com.lea.server.logic.CouponLogic;
+import com.lea.server.utils.JWTUtils;
 import com.lea.server.utils.ServerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,17 +22,20 @@ public class CouponController {
     }
 
     @PostMapping
-    public long createCoupon(@RequestBody Coupon coupon) throws ServerException {
+    public long createCoupon(@RequestHeader String authorization,@RequestBody Coupon coupon) throws Exception {
+        JWTUtils.validateToken(authorization);
         return couponLogic.createCoupon(coupon);
     }
 
     @PutMapping
-    public void updateCoupon(@RequestBody Coupon coupon) throws ServerException {
+    public void updateCoupon(@RequestHeader String authorization, @RequestBody Coupon coupon) throws Exception {
+        JWTUtils.validateToken(authorization);
         couponLogic.updateCoupon(coupon);
     }
 
     @DeleteMapping("/{couponId}")
-    public void removeCoupon(@PathVariable("couponId") long couponId) throws ServerException {
+    public void removeCoupon(@RequestHeader String authorization, @PathVariable("couponId") long couponId) throws Exception {
+        JWTUtils.validateToken(authorization);
         couponLogic.removeCoupon(couponId);
     }
 

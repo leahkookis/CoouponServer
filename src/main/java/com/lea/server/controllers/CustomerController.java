@@ -3,6 +3,7 @@ package com.lea.server.controllers;
 import com.lea.server.beans.CustomerDto;
 import com.lea.server.entity.Customer;
 import com.lea.server.logic.CustomerLogic;
+import com.lea.server.utils.JWTUtils;
 import com.lea.server.utils.ServerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,22 +27,26 @@ public class CustomerController {
   }
 
   @PutMapping
-  public void updateCustomer(@RequestBody Customer customer) throws ServerException {
+  public void updateCustomer(@RequestHeader String authorization, @RequestBody Customer customer) throws Exception {
+    JWTUtils.validateToken(authorization);
     customerLogic.updateCustomer(customer);
   }
 
   @DeleteMapping("/{customerId}")
-  public void removeCustomer(@PathVariable("customerId") long customerId) throws ServerException {
+  public void removeCustomer(@RequestHeader String authorization, @PathVariable("customerId") long customerId) throws Exception {
+    JWTUtils.validateToken(authorization);
     customerLogic.removeCustomer(customerId);
   }
 
   @GetMapping("/{customerId}")
-  public CustomerDto getCustomerByCustomerID(@PathVariable("customerId") int customerId) throws ServerException {
+  public CustomerDto getCustomerByCustomerID(@RequestHeader String authorization, @PathVariable("customerId") int customerId) throws Exception {
+    JWTUtils.validateToken(authorization);
     return customerLogic.getCustomer(customerId);
   }
 
   @GetMapping
-  public List <CustomerDto> getAllCustomers(@RequestParam("page") int page) throws ServerException {
+  public List <CustomerDto> getAllCustomers(@RequestHeader String authorization, @RequestParam("page") int page) throws Exception {
+    JWTUtils.validateToken(authorization);
     return customerLogic.getAllCustomer(page);
   }
 

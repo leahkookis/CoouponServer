@@ -3,6 +3,7 @@ package com.lea.server.controllers;
 import com.lea.server.beans.PurchaseDto;
 import com.lea.server.entity.Purchase;
 import com.lea.server.logic.PurchaseLogic;
+import com.lea.server.utils.JWTUtils;
 import com.lea.server.utils.ServerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,42 +21,44 @@ public class PurchaseController {
   }
 
   @PostMapping
-  public long createPurchase(@RequestBody Purchase purchase) throws ServerException {
+  public long createPurchase(@RequestHeader String authorization  ,@RequestBody Purchase purchase) throws Exception {
+    JWTUtils.validateToken(authorization);
     return purchaseLogic.createPurchase(purchase);
   }
 
   @PutMapping
-  public void updatePurchase(@RequestBody Purchase purchase) throws ServerException {
+  public void updatePurchase(@RequestHeader String authorization, @RequestBody Purchase purchase) throws Exception {
+    JWTUtils.validateToken(authorization);
     purchaseLogic.updatePurchase(purchase);
   }
 
-  @PostMapping("/buycoupons")
-  public void updateCouponsToBuy(@RequestBody Integer[] purchaseIds) throws ServerException {
-    purchaseLogic.updateCouponsToBuy(purchaseIds);
-  }
-
-  @DeleteMapping("/{purchaseId}")
-  public void removePurchase(@PathVariable("purchaseId") long purchaseId) throws ServerException {
+   @DeleteMapping("/{purchaseId}")
+  public void removePurchase(@RequestHeader String authorization, @PathVariable("purchaseId") long purchaseId) throws Exception {
+     JWTUtils.validateToken(authorization);
     purchaseLogic.removePurchase(purchaseId);
   }
 
   @GetMapping("/{purchaseId}")
-  public PurchaseDto getPurchaseByPurchaseID(@PathVariable("purchaseId") int purchaseId) throws ServerException {
+  public PurchaseDto getPurchaseByPurchaseID(@RequestHeader String authorization, @PathVariable("purchaseId") int purchaseId) throws Exception {
+    JWTUtils.validateToken(authorization);
     return purchaseLogic.getPurchase(purchaseId);
   }
 
   @GetMapping("/bycustomer")
-  public List<PurchaseDto> getPurchasesByUserID(@RequestParam("customerid") long customerId) throws ServerException {
+  public List<PurchaseDto> getPurchasesByUserID(@RequestHeader String authorization, @RequestParam("customerid") long customerId) throws Exception {
+    JWTUtils.validateToken(authorization);
     return purchaseLogic.getPurchasesByCustomerID(customerId, 1);
   }
 
   @GetMapping
-  public List<PurchaseDto> getAllPurchases(@RequestParam("page") int page) throws ServerException {
+  public List<PurchaseDto> getAllPurchases(@RequestHeader String authorization, @RequestParam("page") int page) throws Exception {
+    JWTUtils.validateToken(authorization);
     return purchaseLogic.getAllPurchases(page);
   }
 
   @GetMapping("/{companyId}")
-  public List<PurchaseDto> getPurchaseByCompanyID(@RequestParam("companyId") int companyId, @RequestParam("page") int page) throws ServerException {
+  public List<PurchaseDto> getPurchaseByCompanyID(@RequestHeader String authorization, @RequestParam("companyId") int companyId, @RequestParam("page") int page) throws Exception {
+    JWTUtils.validateToken(authorization);
     return purchaseLogic.getPurchasesByCompanyID(companyId, page);
   }
 
