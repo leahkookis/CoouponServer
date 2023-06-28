@@ -3,6 +3,7 @@ package com.lea.server.controllers;
 import com.lea.server.beans.CategoryDto;
 import com.lea.server.entity.Category;
 import com.lea.server.logic.CategoryLogic;
+import com.lea.server.utils.JWTUtils;
 import com.lea.server.utils.ServerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,22 +22,25 @@ public class CategoryController {
     }
 
     @PostMapping
-    public long createCategory(@RequestBody Category category) throws ServerException {
+    public long createCategory(@RequestHeader String authorization, @RequestBody Category category) throws Exception {
+        JWTUtils.validateToken(authorization);
         return categoryLogic.createCategory(category);
 
     }
 
     @DeleteMapping("/{categoryId}")
-    public void removeCategory(@PathVariable("categoryId") int categoryId) throws ServerException {
+    public void removeCategory(@RequestHeader String authorization, @PathVariable("categoryId") int categoryId) throws Exception {
+        JWTUtils.validateToken(authorization);
         categoryLogic.removeCategory(categoryId);
     }
 
     @PutMapping
-    public void updateCategory(@RequestBody Category category) throws ServerException {
+    public void updateCategory(@RequestHeader String authorization, @RequestBody Category category) throws Exception {
+        JWTUtils.validateToken(authorization);
         categoryLogic.updateCategory(category);
     }
 
-    @GetMapping({"/All"})
+    @GetMapping("/all")
     public List<CategoryDto> getAllCategories(@RequestParam("page") int page) throws ServerException {
        return categoryLogic.getAllCategories(page);
     }

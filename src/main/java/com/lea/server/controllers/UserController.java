@@ -4,6 +4,7 @@ import com.lea.server.beans.UserDto;
 import com.lea.server.beans.UserLoginData;
 import com.lea.server.entity.User;
 import com.lea.server.logic.UserLogic;
+import com.lea.server.utils.JWTUtils;
 import com.lea.server.utils.ServerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,22 +32,26 @@ public class UserController {
   }
 
   @PutMapping
-  public void updateUser(@RequestBody User user) throws ServerException {
+  public void updateUser(@RequestHeader String authorization, @RequestBody User user) throws Exception {
+    JWTUtils.validateToken(authorization);
     userLogic.updateUser(user);
   }
 
   @DeleteMapping("/{userId}")
-  public void removeUser(@PathVariable("userId") long userId) throws ServerException {
+  public void removeUser(@RequestHeader String authorization, @PathVariable("userId") long userId) throws Exception {
+    JWTUtils.validateToken(authorization);
     userLogic.removeUser(userId);
   }
 
   @GetMapping("/{userId}")
-  public UserDto getUserByUserID(@PathVariable("userId") int userId) throws ServerException {
+  public UserDto getUserByUserID(@RequestHeader String authorization, @PathVariable("userId") int userId) throws Exception {
+    JWTUtils.validateToken(authorization);
     return userLogic.getUser(userId);
   }
 
-  @GetMapping({"/byCompany"})
-  public List<UserDto> getUsersByCompanyID(@RequestParam("companyId") int companyId, @RequestParam("page") int page)throws ServerException {
+  @GetMapping("/bycompany")
+  public List<UserDto> getUsersByCompanyID(@RequestHeader String authorization, @RequestParam("companyId") int companyId, @RequestParam("page") int page) throws Exception {
+    JWTUtils.validateToken(authorization);
     return userLogic.getUsersByCompanyID(companyId, page);
   }
 
