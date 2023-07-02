@@ -40,7 +40,7 @@ public class CategoryController {
         categoryLogic.updateCategory(category);
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public List<CategoryDto> getAllCategories() throws ServerException {
        return categoryLogic.getAllCategories();
     }

@@ -52,7 +52,7 @@ public class PurchaseLogic {
 
     }
 
-    public List<PurchaseDto> getPurchasesByCustomerID(long customerId, int page) throws ServerException {
+    public List<PurchaseDto> getPurchasesByCustomerID(int customerId, int page) throws ServerException {
         Pageable pageable = PageRequest.of(page-1, Consts.LIMITPERPAGE);
          return purchaseDal.getPurchasesByCustomerID(customerId, pageable);
     }

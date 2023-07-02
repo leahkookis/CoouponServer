@@ -45,7 +45,7 @@ public class PurchaseController {
   }
 
   @GetMapping("/bycustomer")
-  public List<PurchaseDto> getPurchasesByUserID(@RequestHeader String authorization, @RequestParam("customerid") long customerId) throws Exception {
+  public List<PurchaseDto> getPurchasesByUserID(@RequestHeader String authorization, @RequestParam("customerid") int customerId) throws Exception {
     JWTUtils.validateToken(authorization);
     return purchaseLogic.getPurchasesByCustomerID(customerId, 1);
   }
@@ -56,7 +56,7 @@ public class PurchaseController {
     return purchaseLogic.getAllPurchases(page);
   }
 
-  @GetMapping("/{companyId}")
+  @GetMapping("/bycompany")
   public List<PurchaseDto> getPurchaseByCompanyID(@RequestHeader String authorization, @RequestParam("companyId") int companyId, @RequestParam("page") int page) throws Exception {
     JWTUtils.validateToken(authorization);
     return purchaseLogic.getPurchasesByCompanyID(companyId, page);
