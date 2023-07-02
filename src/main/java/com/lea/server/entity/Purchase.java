@@ -22,18 +22,18 @@ public class Purchase {
   @JoinColumn(name = "coupon_id", nullable = false)
   private Coupon coupon;
 
-  @Column(name = "is_buy")
-  private boolean isBuy;
+  @Column(name = "amount")
+  private int amount;
 
   public Purchase() {
   }
 
-  public Purchase(long id, Date timeStamp, Customer customer, Coupon coupon, boolean isBuy) {
+  public Purchase(long id, Date timeStamp, Customer customer, Coupon coupon, int amount) {
     this.id = id;
     this.timeStamp = timeStamp;
     this.customer = customer;
     this.coupon = coupon;
-    this.isBuy = isBuy;
+    this.amount = amount;
   }
 
   public long getId() {
@@ -68,11 +68,11 @@ public class Purchase {
     this.coupon = coupon;
   }
 
-  public boolean getIsBuy() {
-    return isBuy;
+  public int getAmount() {
+    return amount;
   }
 
-  public void setIsBuy(boolean isBuy) {
-    this.isBuy = isBuy;
+  public void setAmount(int amount) {
+    this.amount = amount;
   }
 }

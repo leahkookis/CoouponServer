@@ -35,9 +35,7 @@ public class PurchaseLogic {
 
 
 
-    public void updateCouponsToBuy(Integer[] purchaseIds) throws ServerException {
-        purchaseDal.updateCouponsToBuy(purchaseIds);
-    }
+
 
     public void removePurchase(long purchaseId) throws ServerException {
         purchaseDal.deleteById(purchaseId);

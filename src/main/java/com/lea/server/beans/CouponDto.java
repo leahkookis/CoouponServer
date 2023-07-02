@@ -15,8 +15,9 @@ public class CouponDto {
     private String companyName;
     private long companyId;
     private int amount;
+    private String url;
 
-    public CouponDto(long id, String name, float price, String description, Date startDate, Date endDate, String categoryName, long categoryId, String companyName, long companyId, int amount) {
+    public CouponDto(long id, String name, float price, String description, Date startDate, Date endDate, String categoryName, long categoryId, String companyName, long companyId, int amount, String url) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -28,22 +29,7 @@ public class CouponDto {
         this.companyName = companyName;
         this.companyId = companyId;
         this.amount = amount;
-    }
-
-    public long getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(long categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public long getCompanyId() {
-        return companyId;
-    }
-
-    public void setCompanyId(long companyId) {
-        this.companyId = companyId;
+        this.url = url;
     }
 
     public long getId() {
@@ -102,6 +88,14 @@ public class CouponDto {
         this.categoryName = categoryName;
     }
 
+    public long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(long categoryId) {
+        this.categoryId = categoryId;
+    }
+
     public String getCompanyName() {
         return companyName;
     }
@@ -110,12 +104,28 @@ public class CouponDto {
         this.companyName = companyName;
     }
 
+    public long getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(long companyId) {
+        this.companyId = companyId;
+    }
+
     public int getAmount() {
         return amount;
     }
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     @Override

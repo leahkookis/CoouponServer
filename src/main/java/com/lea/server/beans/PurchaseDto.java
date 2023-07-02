@@ -11,9 +11,9 @@ public class PurchaseDto {
     private Date timeStamp;
     private String categoryName;
     private String companyName;
-    private boolean isBuy;
+    private int amount;
 
-    public PurchaseDto(long id, String name, float couponPrice, String couponName, Date timeStamp, String categoryName, String companyName, boolean isBuy) {
+    public PurchaseDto(long id, String name, float couponPrice, String couponName, Date timeStamp, String categoryName, String companyName, int amount) {
         this.id = id;
         this.name = name;
         this.couponPrice = couponPrice;
@@ -21,7 +21,7 @@ public class PurchaseDto {
         this.timeStamp = timeStamp;
         this.categoryName = categoryName;
         this.companyName = companyName;
-        this.isBuy = isBuy;
+        this.amount = amount;
     }
 
     public long getId() {
@@ -80,11 +80,11 @@ public class PurchaseDto {
         this.companyName = companyName;
     }
 
-    public boolean isBuy() {
-        return isBuy;
+    public int getAmount() {
+        return amount;
     }
 
-    public void setBuy(boolean buy) {
-        isBuy = buy;
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 }
