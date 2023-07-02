@@ -11,10 +11,12 @@ public class CouponDto {
     private Date startDate;
     private Date endDate;
     private String categoryName;
+    private long categoryId;
     private String companyName;
+    private long companyId;
     private int amount;
 
-    public CouponDto(long id, String name, float price, String description, Date startDate, Date endDate, String categoryName, String companyName, int amount) {
+    public CouponDto(long id, String name, float price, String description, Date startDate, Date endDate, String categoryName, long categoryId, String companyName, long companyId, int amount) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -22,8 +24,26 @@ public class CouponDto {
         this.startDate = startDate;
         this.endDate = endDate;
         this.categoryName = categoryName;
+        this.categoryId = categoryId;
         this.companyName = companyName;
+        this.companyId = companyId;
         this.amount = amount;
+    }
+
+    public long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public long getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(long companyId) {
+        this.companyId = companyId;
     }
 
     public long getId() {

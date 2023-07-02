@@ -41,8 +41,8 @@ public class CategoryController {
     }
 
     @GetMapping("/all")
-    public List<CategoryDto> getAllCategories(@RequestParam("page") int page) throws ServerException {
-       return categoryLogic.getAllCategories(page);
+    public List<CategoryDto> getAllCategories() throws ServerException {
+       return categoryLogic.getAllCategories();
     }
 
     @GetMapping("/{categoryId}")
