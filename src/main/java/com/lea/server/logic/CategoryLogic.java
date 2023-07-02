@@ -45,8 +45,8 @@ public class CategoryLogic {
         return categoryDal.findById(categoryId) != null;
     }
 
-    public List<CategoryDto> getAllCategories(int page) throws ServerException {
-        Pageable pageable = PageRequest.of(page-1, Consts.LIMITPERPAGE);
+    public List<CategoryDto> getAllCategories() throws ServerException {
+        Pageable pageable = PageRequest.of(0, Consts.LIMITPERPAGE);
         return  categoryDal.findAll(pageable);
     }
 

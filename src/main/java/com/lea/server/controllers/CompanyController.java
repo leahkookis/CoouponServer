@@ -40,7 +40,7 @@ public class CompanyController {
         companyLogic.updateCompany(company);
     }
 
-    @GetMapping("/byPage")
+    @GetMapping
     public List<CompanyDto> getAllCompaniesByPage(@RequestHeader String authorization, @RequestParam("page") int page) throws Exception {
         JWTUtils.validateToken(authorization);
         return companyLogic.getAllCompanies(page);

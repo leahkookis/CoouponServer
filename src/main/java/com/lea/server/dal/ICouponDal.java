@@ -12,17 +12,17 @@ import java.util.List;
 
 public interface ICouponDal extends CrudRepository<Coupon, Long> {
 
-    @Query("SELECT new com.lea.server.beans.CouponDto(coup.id, coup.name, coup.price, coup.description, coup.startDate, coup.endDate, coup.category.name, coup.company.name, coup.amount) " +
+    @Query("SELECT new com.lea.server.beans.CouponDto(coup.id, coup.name, coup.price, coup.description, coup.startDate, coup.endDate, coup.category.name,coup.category.id, coup.company.name,coup.company.id, coup.amount) " +
             "FROM Coupon coup JOIN Category cat ON coup.category.id = cat.id " +
             "JOIN Company com ON coup.company.id = com.id WHERE coup.id= :id")
     CouponDto findById(@Param("id") long id);
 
-    @Query("SELECT new com.lea.server.beans.CouponDto(coup.id, coup.name, coup.price, coup.description, coup.startDate, coup.endDate, coup.category.name, coup.company.name, coup.amount)" +
+    @Query("SELECT new com.lea.server.beans.CouponDto(coup.id, coup.name, coup.price, coup.description, coup.startDate, coup.endDate, coup.category.name,coup.category.id, coup.company.name,coup.company.id, coup.amount)" +
            "FROM Coupon coup JOIN Category cat ON coup.category.id = cat.id " +
             "JOIN Company com ON coup.company.id = com.id WHERE coup.company.id= :companyId")
     List<CouponDto> getCouponsByCompanyID(@Param("companyId") long companyId, Pageable pageable);
 
-    @Query("SELECT new com.lea.server.beans.CouponDto(coup.id, coup.name, coup.price, coup.description, coup.startDate, coup.endDate, coup.category.name, coup.company.name, coup.amount)" +
+    @Query("SELECT new com.lea.server.beans.CouponDto(coup.id, coup.name, coup.price, coup.description, coup.startDate, coup.endDate, coup.category.name,coup.category.id, coup.company.name,coup.company.id, coup.amount)" +
             "FROM Coupon coup JOIN Category cat ON coup.category.id = cat.id " +
             "JOIN Company com ON coup.company.id = com.id WHERE coup.category.id = :categoryId")
     List<CouponDto> getCouponsByCategoryID(@Param("categoryId") long categoryId, Pageable pageable);
@@ -39,12 +39,12 @@ public interface ICouponDal extends CrudRepository<Coupon, Long> {
     @Query("SELECT count(coup.id)>0 FROM Coupon coup  WHERE coup.id= :couponId AND coup.endDate BETWEEN :startDate AND :endDate")
     boolean isCouponValidDate(@Param("couponId") long couponId, @Param("startDate")Date startDate,@Param("endDate")Date endDate);
 
-    @Query("SELECT new com.lea.server.beans.CouponDto(coup.id, coup.name, coup.price, coup.description, coup.startDate, coup.endDate, coup.category.name, coup.company.name, coup.amount) " +
+    @Query("SELECT new com.lea.server.beans.CouponDto(coup.id, coup.name, coup.price, coup.description, coup.startDate, coup.endDate, coup.category.name,coup.category.id, coup.company.name,coup.company.id, coup.amount) " +
             "FROM Coupon coup JOIN Category cat ON coup.category.id = cat.id " +
             "JOIN Company com ON coup.company.id = com.id order by coup.price")
     List<CouponDto> getAllCouponsOrderByPrice();
 
-    @Query("SELECT new com.lea.server.beans.CouponDto(coup.id, coup.name, coup.price, coup.description, coup.startDate, coup.endDate, coup.category.name, coup.company.name, coup.amount) " +
+    @Query("SELECT new com.lea.server.beans.CouponDto(coup.id, coup.name, coup.price, coup.description, coup.startDate, coup.endDate, coup.category.name,coup.category.id, coup.company.name,coup.company.id, coup.amount) " +
             "FROM Coupon coup JOIN Category cat ON coup.category.id = cat.id " +
             "JOIN Company com ON coup.company.id = com.id")
     List<CouponDto> getAllCoupons(Pageable pageable);
