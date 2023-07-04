@@ -13,9 +13,9 @@ public interface ICompanyDal extends CrudRepository<Company, Long> {
 
     boolean existsByName(String name);
 
-    @Query("SELECT new com.sari.server.beans.CompanyDto(com.id, com.name, com.address, com.phoneNumber) FROM Company com WHERE com.id= :id")
+    @Query("SELECT new com.project.server.beans.CompanyDto(com.id, com.name, com.address, com.phoneNumber) FROM Company com WHERE com.id= :id")
     CompanyDto findById(@Param("id")long id);
 
-    @Query("SELECT new com.sari.server.beans.CompanyDto(com.id, com.name, com.address, com.phoneNumber) FROM Company com")
+    @Query("SELECT new com.project.server.beans.CompanyDto(com.id, com.name, com.address, com.phoneNumber) FROM Company com")
     List<CompanyDto> findAll(Pageable pageable);
 }

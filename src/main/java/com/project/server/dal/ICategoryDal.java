@@ -12,10 +12,10 @@ import java.util.List;
 public interface ICategoryDal extends CrudRepository<Category, Long> {
 
 
-  @Query("SELECT new com.sari.server.beans.CategoryDto(cat.id, cat.name) FROM Category cat WHERE cat.id= :id")
+  @Query("SELECT new com.project.server.beans.CategoryDto(cat.id, cat.name) FROM Category cat WHERE cat.id= :id")
   CategoryDto findById(@Param("id") long id);
 
-  @Query("SELECT new com.sari.server.beans.CategoryDto(cat.id, cat.name) FROM Category cat")
+  @Query("SELECT new com.project.server.beans.CategoryDto(cat.id, cat.name) FROM Category cat")
   List<CategoryDto> findAll(Pageable pageable);
 
 
