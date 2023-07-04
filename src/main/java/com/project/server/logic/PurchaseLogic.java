@@ -35,9 +35,7 @@ public class PurchaseLogic {
 
 
 
-    public void updateCouponsToBuy(Integer[] purchaseIds) throws ServerException {
-        purchaseDal.updateCouponsToBuy(purchaseIds);
-    }
+
 
     public void removePurchase(long purchaseId) throws ServerException {
         purchaseDal.deleteById(purchaseId);
@@ -54,7 +52,7 @@ public class PurchaseLogic {
 
     }
 
-    public List<PurchaseDto> getPurchasesByCustomerID(long customerId, int page) throws ServerException {
+    public List<PurchaseDto> getPurchasesByCustomerID(int customerId, int page) throws ServerException {
         Pageable pageable = PageRequest.of(page-1, Consts.LIMITPERPAGE);
          return purchaseDal.getPurchasesByCustomerID(customerId, pageable);
     }

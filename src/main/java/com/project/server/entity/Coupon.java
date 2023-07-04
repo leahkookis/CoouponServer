@@ -38,6 +38,9 @@ public class Coupon {
     @Column(name="amount", nullable = false )
     private int amount;
 
+    @Column(name="url", nullable = false )
+    private String url;
+
     @OneToMany(mappedBy = "coupon", cascade = CascadeType.REMOVE)
     private List<Purchase> purchases;
 
