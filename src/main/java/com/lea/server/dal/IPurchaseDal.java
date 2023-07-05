@@ -27,7 +27,7 @@ public interface IPurchaseDal extends CrudRepository<Purchase, Long> {
     @Query("SELECT new com.lea.server.beans.PurchaseDto(pur.id, pur.customer.name, pur.coupon.price, pur.coupon.name, pur.timeStamp, pur.coupon.category.name, pur.coupon.company.name,pur.amount)" +
             "FROM Purchase pur JOIN Coupon coup ON pur.coupon.id = coup.id " +
             "JOIN Customer cus ON pur.customer.id = cus.id WHERE pur.customer.id = :customerId")
-    List<PurchaseDto> getPurchasesByCustomerID(@Param("customerId") int customerId, Pageable pageable);
+    List<PurchaseDto> getPurchasesByCustomerID(@Param("customerId") long customerId, Pageable pageable);
 
     @Query("SELECT new com.lea.server.beans.PurchaseDto(pur.id, pur.customer.name, pur.coupon.price, pur.coupon.name, pur.timeStamp, pur.coupon.category.name, pur.coupon.company.name ,pur.amount)" +
             "FROM Purchase pur JOIN Coupon coup ON pur.coupon.id = coup.id " +
