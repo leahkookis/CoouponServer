@@ -20,7 +20,7 @@ public interface IUserDal extends CrudRepository<User, Long> {
     List<UserDto> getUsersByCompanyID(@Param("companyId") long companyId, Pageable pageable);
 
     @Query("SELECT new com.project.server.beans.UserDto(u.id, u. userName, u. password, u.userType, u.company.name) " +
-            "FROM User u JOIN Company com ON u.company.id = com.id")
+            "FROM User u LEFT JOIN Company com ON u.company.id = com.id")
     List<UserDto> findAll(Pageable pageable);
 
     @Query("SELECT new com.project.server.beans.UserDto(u.id, u. userName, u. password, u.userType, u.company.name) " +

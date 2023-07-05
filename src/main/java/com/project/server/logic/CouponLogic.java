@@ -1,5 +1,6 @@
 package com.project.server.logic;
 
+import com.project.server.enums.Type;
 import com.project.server.utils.ServerException;
 import com.project.server.beans.CouponDto;
 import com.project.server.constanse.Consts;
@@ -30,6 +31,17 @@ public class CouponLogic {
   }
 
   public long createCoupon(Coupon coupon) throws ServerException {
+    if(coupon.getCategory().equals("Food")){
+    coupon.setUrl("https://heninthekitchen.com/wp-content/uploads/2021/04/IMG_1849-1small-683x1024.jpg");}
+    if(coupon.getCategory().equals("Hotels")){
+      coupon.setUrl("https://static.wixstatic.com/media/6db993_054071a59d5642698111b09bcd91877b~mv2_d_6720_4181_s_4_2.jpg/v1/fill/w_2500,h_1555,al_c/6db993_054071a59d5642698111b09bcd91877b~mv2_d_6720_4181_s_4_2.jpg");}
+    if(coupon.getCategory().equals("Massage")){
+      coupon.setUrl("https://cdn.baligam.co.il/_media/media/74142/481902.jpg");}
+    if(coupon.getCategory().equals("Flights")){
+      coupon.setUrl("https://www.familytour.co.il/wp-content/uploads/2017/07/%D7%98%D7%99%D7%A1%D7%95%D7%AA-960x500.jpg");}
+    if(coupon.getCategory().equals("Movies")){
+      coupon.setUrl("https://www.kolhazman.co.il/wp-content/uploads/2018/12/213412.jpg");}
+
     CouponValidation(coupon);
     couponDal.save(coupon);
     return coupon.getId();

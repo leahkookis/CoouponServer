@@ -127,18 +127,28 @@ public class Coupon {
         this.amount = amount;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     @Override
     public String toString() {
-        return "CouponEntity{" +
+        return "Coupon{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", description='" + description + '\'' +
-                ", startingDate=" + startDate +
-                ", endingDate=" + endDate +
-                ", category='" + category + '\'' +
-                ", companyId=" + company +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", category=" + category +
+                ", company=" + company +
                 ", amount=" + amount +
+                ", url='" + url + '\'' +
+                ", purchases=" + purchases +
                 '}';
     }
 }
