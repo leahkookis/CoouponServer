@@ -9,6 +9,13 @@ public class UserDto {
     private Type userType;
     private String companyName;
 
+    public UserDto(long id, String userName, String password, Type userType) {
+        this.id = id;
+        this.userName = userName;
+        this.password = password;
+        this.userType = userType;
+
+    }
     public UserDto(long id, String userName, String password, Type userType, String companyName) {
         this.id = id;
         this.userName = userName;
@@ -16,6 +23,7 @@ public class UserDto {
         this.userType = userType;
         this.companyName = companyName;
     }
+
 
     public long getId() {
         return id;
