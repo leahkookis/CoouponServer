@@ -51,7 +51,7 @@ public class CouponController {
         return couponLogic.getCoupon(couponId);
     }
 
-    @GetMapping("/byCompany")
+    @GetMapping("/bycompany")
     public List<CouponDto> getCouponsByCompanyID(@RequestParam("companyId") long companyId, @RequestParam("page") int page) throws ServerException {
         return couponLogic.getCouponsByCompanyID(companyId, page);
     }
