@@ -28,7 +28,7 @@ public interface IUserDal extends CrudRepository<User, Long> {
             "WHERE u.id= :id")
     UserDto findById(@Param("id") long id);
 
-    @Query("SELECT new com.project.server.beans.SuccessfulLoginData(u.id, u.userType, com.id) " +
+    @Query("SELECT new com.project.server.beans.SuccessfulLoginData(u.id, u.userType, u.company.id) " +
             "FROM User u where u.userName= :userName and u.password= :password")
     SuccessfulLoginData login(@Param("userName") String userName, @Param("password") String password);
 
